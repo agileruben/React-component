@@ -1,5 +1,7 @@
 import React from "react";
+import Button from "./components/button/button";
 import "./App.css";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -7,6 +9,11 @@ class App extends React.Component {
       waterCapacitor: [],
     };
     this.intervalId = 0;
+    this.delay = 2000;
+  }
+
+  componentWillUnmount() {
+    this.intervalId && clearInterval(this.intervalId);
   }
 
   water(index) {
@@ -26,7 +33,7 @@ class App extends React.Component {
       } else {
         clearInterval(this.intervalId);
       }
-    }, 2000);
+    }, this.delay);
   };
 
   decreaseWaterLevel = () => {
@@ -42,24 +49,27 @@ class App extends React.Component {
       } else {
         clearInterval(this.intervalId);
       }
-    }, 2000);
+    }, this.delay);
   };
 
   render() {
     return (
-      <div className="app-container">
-        <div className="water-level-display-container">
-          <h3>{this.state.waterCapacitor.length || 0}</h3>
+      <div className="app-container m-standard">
+        <h3>
+          Water level:{" "}
+          <span style={{ color: "red" }}>
+            {this.state.waterCapacitor.length || 0}
+          </span>
+        </h3>
+        <div className="table w-100">
+          <div className="tank w-50 table-cell">
+            {this.state.waterCapacitor || ""}
+          </div>
+          <div className="button-container table-cell">
+            <Button text={"+"} onClick={this.increaseWaterLevel} />
+            <Button text={"-"} onClick={this.decreaseWaterLevel} />
+          </div>
         </div>
-        <div className="button-container">
-          <button className="button fixed-w" onClick={this.increaseWaterLevel}>
-            +
-          </button>
-          <button className="button fixed-w" onClick={this.decreaseWaterLevel}>
-            -
-          </button>
-        </div>
-        <div className="tank fixed-w">{this.state.waterCapacitor}</div>
       </div>
     );
   }

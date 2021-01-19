@@ -1,0 +1,25 @@
+.container {
+  width: 80%;
+  margin: 10% 10px 10px 10%;
+  height: 30px;
+  background-color: #d8d8d8;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.container:hover {
+  background-color: darkgrey;
+}
+
+.container:active {
+  background-color: lightgray;
+}
+
+.text {
+  font-size: x-large;
+  font-weight: bold;
+  margin: 0;
+}
